@@ -107,6 +107,27 @@ p {
     margin-bottom: 20px;
 }
 
+.about-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.text {
+    width: 60%;  /* Adjust this as needed */
+    font-size: 18px;
+    line-height: 1.6;
+    color: #333;
+}
+
+.about-image {
+    width: 35%;  /* Adjust image size */
+    border-radius: 8px;
+    margin-left: 20px; /* Space between text and image */
+    object-fit: cover;
+}
+
+/* Services Section */
 .services {
     display: flex;
     justify-content: space-between;
@@ -173,4 +194,22 @@ footer {
 
 footer p {
     font-size: 14px;
+}
+
+/* Optional: To make the text wrap nicely around the image on smaller screens */
+@media (max-width: 768px) {
+    .about-content {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .text {
+        width: 100%;
+        margin-bottom: 20px;
+    }
+
+    .about-image {
+        width: 100%;
+        margin-left: 0;
+    }
 }
