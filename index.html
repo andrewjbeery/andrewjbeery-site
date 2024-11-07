@@ -1,42 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>AJ Beery</title>
-    <link rel="icon" href="assets/AJ.ico" type="image/x-icon">
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f4f4f9;
-            margin: 0;
-            padding: 0;
-            height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-        }
-        h1 {
-            color: #2c3e50;
-            font-size: 3rem;
-            margin-bottom: 20px;
-        }
-        p {
-            color: #7f8c8d;
-            font-size: 1.2rem;
-        }
-        .container {
-            background-color: white;
-            border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            padding: 40px;
-            width: 80%;
-            max-width: 600px;
-        }
-    </style>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="icon" href="assets/AJ.ico" type="image/x-icon"> <!-- Add your favicon here -->
 </head>
 <body>
-    <div class="container">
-        <h1>Website Coming Soon!</h1>
-        <p>I am working hard to get my site ready. Stay tuned!</p>
-    </div>
+    <header>
+        <div class="container">
+            <img src="assets/Logo.png" alt="Logo" class="logo"> <!-- Add your logo here -->
+            <nav>
+                <ul>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#services">Services</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section id="home" class="hero">
+        <div class="container">
+            <h1>Hello, I'm AJ Beery</h1>
+            <p>I am a student studying data and information science at the University of Wisconsin-Madison. Let's work together to create something amazing.</p>
+            <a href="#contact" class="cta-button">Get In Touch</a>
+        </div>
+    </section>
+
+    <section id="about" class="section">
+        <div class="container">
+            <h2>About Me</h2>
+            <p>I'm a [your profession] with a passion for [what you're passionate about]. I have [X] years of experience helping clients achieve their goals through [your expertise].</p>
+        </div>
+    </section>
+
+    <!-- <section id="services" class="section">
+        <div class="container">
+            <h2>My Services</h2>
+            <div class="services">
+                <div class="service">
+                    <h3>Service 1</h3>
+                    <p>Brief description of your first service.</p>
+                </div>
+                <div class="service">
+                    <h3>Service 2</h3>
+                    <p>Brief description of your second service.</p>
+                </div>
+                <div class="service">
+                    <h3>Service 3</h3>
+                    <p>Brief description of your third service.</p>
+                </div>
+            </div>
+        </div>
+    </section> -->
+
+    <section id="contact" class="section">
+        <div class="container">
+            <h2>Contact Me</h2>
+            <form action="submit_form.php" method="POST">
+                <label for="name">Your Name</label>
+                <input type="text" id="name" name="name" required>
+
+                <label for="email">Your Email</label>
+                <input type="email" id="email" name="email" required>
+
+                <label for="message">Your Message</label>
+                <textarea id="message" name="message" required></textarea>
+
+                <button type="submit" class="cta-button">Send Message</button>
+            </form>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 Your Name. All Rights Reserved.</p>
+        </div>
+    </footer>
 </body>
+</html>
