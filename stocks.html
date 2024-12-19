@@ -59,42 +59,45 @@
         // Handle form submission
         document.getElementById("stock-form").addEventListener("submit", async (e) => {
             e.preventDefault();
-
+        
             const email = document.getElementById("email").value.trim();
+            console.log("Email:", email); // Debugging: Check email value
             if (!email) {
                 alert("Email is required.");
                 return;
             }
-
+        
             let stocks = {};
             let validForm = true;
-
+        
             // Loop through each stock entry
             for (let i = 1; i <= stockCount; i++) {
                 const ticker = document.getElementById(`stock${i}-ticker`).value.trim().toUpperCase();
                 const holdings = parseFloat(document.getElementById(`stock${i}-holdings`).value);
-
+        
+                console.log(`Stock ${i}:`, { ticker, holdings }); // Debugging: Check ticker and holdings values
+        
                 // Validate ticker and holdings
                 if (!ticker || isNaN(holdings)) {
                     alert(`Please provide valid values for stock #${i}`);
                     validForm = false;
                     break;
                 }
-
+        
                 if (ticker && !isNaN(holdings)) {
                     stocks[ticker] = holdings;
                 }
             }
-
+        
             // If validation fails, stop form submission
             if (!validForm) {
                 return;
             }
-
+        
             // Prepare data to be sent
             const data = { EMAIL: email, ...stocks };
-            console.log('Submitted Data:', data);  // Log for debugging
-
+            console.log('Submitted Data:', data);  // Debugging: Log data being sent
+        
             try {
                 const response = await fetch("https://1457-2600-1700-9857-21a0-e919-5d9c-cfdb-b387.ngrok-free.app/submit", {
                     method: "POST",
@@ -103,7 +106,7 @@
                     },
                     body: JSON.stringify(data),
                 });
-
+        
                 if (response.ok) {
                     alert("Data submitted successfully!");
                     document.getElementById("stock-form").reset(); // Reset form after successful submission
