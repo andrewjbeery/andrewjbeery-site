@@ -33,12 +33,11 @@
         <div id="stocks-container">
             <div class="stock-entry">
                 <input type="text" id="stock1-ticker" placeholder="Ticker" required />
-                <input type="number" id="stock1-holdings" placeholder="Holdings" required />
+                <input type="number" id="stock1-holdings" placeholder="Holdings" required step="any" />
             </div>
         </div>
 
         <button type="button" id="add-stock">Add Another Stock</button>
-
         <button type="submit">Submit</button>
     </form>
 
@@ -52,7 +51,7 @@
             newStockEntry.classList.add('stock-entry');
             newStockEntry.innerHTML = `
                 <input type="text" id="stock${stockCount}-ticker" placeholder="Ticker" required />
-                <input type="number" id="stock${stockCount}-holdings" placeholder="Holdings" required />
+                <input type="number" id="stock${stockCount}-holdings" placeholder="Holdings" required step="any" />
             `;
             document.getElementById('stocks-container').appendChild(newStockEntry);
         });
@@ -68,21 +67,31 @@
             }
 
             let stocks = {};
+            let validForm = true;
+
+            // Loop through each stock entry
             for (let i = 1; i <= stockCount; i++) {
                 const ticker = document.getElementById(`stock${i}-ticker`).value.trim().toUpperCase();
                 const holdings = parseFloat(document.getElementById(`stock${i}-holdings`).value);
+
+                // Validate ticker and holdings
+                if (!ticker || isNaN(holdings)) {
+                    alert(`Please provide valid values for stock #${i}`);
+                    validForm = false;
+                    break;
+                }
 
                 if (ticker && !isNaN(holdings)) {
                     stocks[ticker] = holdings;
                 }
             }
 
-            // Check if there are any stocks to submit
-            if (Object.keys(stocks).length === 0) {
-                alert("At least one stock entry is required.");
+            // If validation fails, stop form submission
+            if (!validForm) {
                 return;
             }
 
+            // Prepare data to be sent
             const data = { EMAIL: email, ...stocks };
             console.log('Submitted Data:', data);  // Log for debugging
 
@@ -97,6 +106,14 @@
 
                 if (response.ok) {
                     alert("Data submitted successfully!");
+                    document.getElementById("stock-form").reset(); // Reset form after successful submission
+                    stockCount = 1; // Reset stock counter
+                    document.getElementById('stocks-container').innerHTML = `
+                        <div class="stock-entry">
+                            <input type="text" id="stock1-ticker" placeholder="Ticker" required />
+                            <input type="number" id="stock1-holdings" placeholder="Holdings" required step="any" />
+                        </div>
+                    `;
                 } else {
                     const error = await response.json();
                     alert(`Error: ${error.error}`);
