@@ -213,3 +213,25 @@ footer p {
         margin-left: 0;
     }
 }
+
+/* Style for the PDF viewer section */
+.pdf-container {
+    display: flex;
+    justify-content: center; /* Center horizontally */
+    align-items: center; /* Center vertically */
+    height: 80vh; /* Adjust height as needed */
+    border: 1px solid #ccc; /* Optional: Add a border for visual clarity */
+    padding: 20px; /* Optional: Add padding for spacing */
+    background-color: #f9f9f9; /* Optional: Add a background color */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Optional: Add a shadow for style */
+    border-radius: 8px; /* Optional: Add rounded corners */
+}
+
+/* Style for the PDF viewer itself */
+.pdf-viewer {
+    width: 100%; /* Full width of the container */
+    height: 100%; /* Full height of the container */
+    max-width: 800px; /* Optional: Set a max width */
+    max-height: 100%; /* Ensure it doesn't overflow vertically */
+    border: none; /* Remove border from the embed element */
+}
