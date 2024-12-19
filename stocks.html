@@ -6,198 +6,106 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Stock Tracker | AJ Beery</title>
     <link rel="stylesheet" href="styles.css">
-    <link rel="icon" href="assets/AJ.ico" type="image/x-icon"> <!-- Add your favicon here -->
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f4f4f9;
-            margin: 0;
-            padding: 0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-        }
-
-        .container {
-            width: 100%;
-            max-width: 600px;
-            padding: 20px;
-            background-color: #fff;
-            border-radius: 8px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        }
-
-        header {
-            text-align: center;
-            margin-bottom: 20px;
-        }
-
-        .logo {
-            width: 150px;
-        }
-
-        h1 {
-            color: #333;
-            font-size: 2rem;
-            margin-bottom: 20px;
-        }
-
-        form {
-            display: flex;
-            flex-direction: column;
-        }
-
-        label {
-            font-size: 1rem;
-            margin-bottom: 8px;
-            color: #555;
-        }
-
-        input[type="email"],
-        input[type="text"] {
-            padding: 10px;
-            font-size: 1rem;
-            margin-bottom: 16px;
-            border: 1px solid #ddd;
-            border-radius: 4px;
-            outline: none;
-            box-sizing: border-box;
-        }
-
-        input[type="email"]:focus,
-        input[type="text"]:focus {
-            border-color: #007BFF;
-        }
-
-        button {
-            background-color: #007BFF;
-            color: white;
-            padding: 12px 20px;
-            font-size: 1rem;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-            transition: background-color 0.3s ease;
-        }
-
-        button:hover {
-            background-color: #0056b3;
-        }
-
-        .stock-entry {
-            display: flex;
-            justify-content: space-between;
-            margin-bottom: 8px;
-        }
-
-        .stock-entry input {
-            width: 45%;
-        }
-
-        footer {
-            text-align: center;
-            margin-top: 20px;
-            font-size: 0.8rem;
-            color: #777;
-        }
-    </style>
+    <link rel="icon" href="assets/AJ.ico" type="image/x-icon">
 </head>
 <body>
-
-    <div class="container">
-        <header>
+    <header>
+        <div class="container">
             <img src="assets/Logo.png" alt="Logo" class="logo">
-            <h1>Stock Tracker</h1>
-        </header>
+            <nav>
+                <ul>
+                    <li><a href="/">Home</a></li>
+                    <li><a href="#about">About</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
 
-        <form id="stock-form">
+    <h1>Stock Tracker</h1>
+    <p>Enter your email and stock holdings below:</p>
+
+    <form id="stock-form">
+        <div class="form-group">
             <label for="email">Email:</label>
             <input type="email" id="email" name="email" required />
+        </div>
 
-            <div id="stocks-container">
-                <label for="stocks">Stocks (Ticker: Holdings):</label>
-                <div class="stock-entry">
-                    <input type="text" id="stock1-ticker" placeholder="Ticker" required />
-                    <input type="number" id="stock1-holdings" placeholder="Holdings" required />
-                </div>
-                <!-- Additional stock fields will be appended here -->
+        <div id="stocks-container">
+            <div class="stock-entry">
+                <input type="text" id="stock1-ticker" placeholder="Ticker" required />
+                <input type="number" id="stock1-holdings" placeholder="Holdings" required />
             </div>
+        </div>
 
-            <button type="button" id="add-stock">Add Another Stock</button>
-            <button type="submit">Submit</button>
-        </form>
-    </div>
+        <button type="button" id="add-stock">Add Another Stock</button>
 
-    <footer>
-        <p>&copy; 2024 AJ Beery. All Rights Reserved.</p>
-    </footer>
+        <button type="submit">Submit</button>
+    </form>
 
     <script>
-    let stockCount = 1;  // Start with one stock input
+        let stockCount = 1;  // Start with one stock input
 
-    // Function to add another stock entry
-    document.getElementById('add-stock').addEventListener('click', () => {
-        stockCount++;
-        const newStockEntry = document.createElement('div');
-        newStockEntry.classList.add('stock-entry');
-        newStockEntry.innerHTML = `
-            <input type="text" id="stock${stockCount}-ticker" placeholder="Ticker" required />
-            <input type="number" id="stock${stockCount}-holdings" placeholder="Holdings" required />
-        `;
-        document.getElementById('stocks-container').appendChild(newStockEntry);
-    });
+        // Function to add another stock entry
+        document.getElementById('add-stock').addEventListener('click', () => {
+            stockCount++;
+            const newStockEntry = document.createElement('div');
+            newStockEntry.classList.add('stock-entry');
+            newStockEntry.innerHTML = `
+                <input type="text" id="stock${stockCount}-ticker" placeholder="Ticker" required />
+                <input type="number" id="stock${stockCount}-holdings" placeholder="Holdings" required />
+            `;
+            document.getElementById('stocks-container').appendChild(newStockEntry);
+        });
 
-    // Handle form submission
-    document.getElementById("stock-form").addEventListener("submit", async (e) => {
-        e.preventDefault();
+        // Handle form submission
+        document.getElementById("stock-form").addEventListener("submit", async (e) => {
+            e.preventDefault();
 
-        const email = document.getElementById("email").value.trim();
-        if (!email) {
-            alert("Email is required.");
-            return;
-        }
-
-        let stocks = {};
-        for (let i = 1; i <= stockCount; i++) {
-            const ticker = document.getElementById(`stock${i}-ticker`).value.trim().toUpperCase();
-            const holdings = parseFloat(document.getElementById(`stock${i}-holdings`).value);
-
-            if (ticker && !isNaN(holdings)) {
-                stocks[ticker] = holdings;
+            const email = document.getElementById("email").value.trim();
+            if (!email) {
+                alert("Email is required.");
+                return;
             }
-        }
 
-        // Check if there are any stocks to submit
-        if (Object.keys(stocks).length === 0) {
-            alert("At least one stock entry is required.");
-            return;
-        }
+            let stocks = {};
+            for (let i = 1; i <= stockCount; i++) {
+                const ticker = document.getElementById(`stock${i}-ticker`).value.trim().toUpperCase();
+                const holdings = parseFloat(document.getElementById(`stock${i}-holdings`).value);
 
-        const data = { EMAIL: email, ...stocks };
-        console.log('Submitted Data:', data);  // Log for debugging
-
-        try {
-            const response = await fetch("https://1457-2600-1700-9857-21a0-e919-5d9c-cfdb-b387.ngrok-free.app/submit", {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                },
-                body: JSON.stringify(data),
-            });
-
-            if (response.ok) {
-                alert("Data submitted successfully!");
-            } else {
-                const error = await response.json();
-                alert(`Error: ${error.error}`);
+                if (ticker && !isNaN(holdings)) {
+                    stocks[ticker] = holdings;
+                }
             }
-        } catch (err) {
-            console.error(err);
-            alert("An error occurred. Please try again.");
-        }
-    });
-</script>
 
+            // Check if there are any stocks to submit
+            if (Object.keys(stocks).length === 0) {
+                alert("At least one stock entry is required.");
+                return;
+            }
+
+            const data = { EMAIL: email, ...stocks };
+            console.log('Submitted Data:', data);  // Log for debugging
+
+            try {
+                const response = await fetch("https://1457-2600-1700-9857-21a0-e919-5d9c-cfdb-b387.ngrok-free.app/submit", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify(data),
+                });
+
+                if (response.ok) {
+                    alert("Data submitted successfully!");
+                } else {
+                    const error = await response.json();
+                    alert(`Error: ${error.error}`);
+                }
+            } catch (err) {
+                console.error(err);
+                alert("An error occurred. Please try again.");
+            }
+        });
+    </script>
 </body>
 </html>
