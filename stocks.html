@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Stock Tracker | AJ Beery</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="icon" href="assets/AJ.ico" type="image/x-icon"> <!-- Add your favicon here -->
+</head>
+<body>
+    <header>
+        <div class="container">
+            <img src="assets/Logo.png" alt="Logo" class="logo"> <!-- Add your logo here -->
+            <nav>
+                <ul>
+                    <li><a href="/">Home</a></li>
+                    <li><a href="#about">About</a></li>
+                    <!-- <li><a href="#contact">Contact</a></li> -->
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section id="stocks" class="section">
+        <div class="container">
+            <h2>Stock Tracker</h2>
+            <p>Enter your email and the stocks you want to track below:</p>
+            <form id="stock-form">
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" required />
+                <label for="stocks">Stocks (comma-separated):</label>
+                <input type="text" id="stocks" name="stocks" required />
+                <button type="submit">Submit</button>
+            </form>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 AJ Beery. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        document.getElementById("stock-form").addEventListener("submit", async (e) => {
+            e.preventDefault();
+
+            const email = document.getElementById("email").value;
+            const stocks = document.getElementById("stocks").value.split(',');
+
+            try {
+                const response = await fetch("https://your-ngrok-url/submit", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify({ email, stocks }),
+                });
+
+                if (response.ok) {
+                    const data = await response.json();
+                    alert(`Response: ${JSON.stringify(data, null, 2)}`);
+                } else {
+                    const error = await response.json();
+                    alert(`Error: ${error.error}`);
+                }
+            } catch (err) {
+                console.error(err);
+                alert("An error occurred. Please try again.");
+            }
+        });
+    </script>
+</body>
+</html>
