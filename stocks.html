@@ -234,7 +234,7 @@
             console.log('Submitted Data:', data);  // Log for debugging
 
             try {
-                const response = await fetch("https://1a82-75-6-176-94.ngrok-free.app/submit", {
+                const response = await fetch("https://5b0a-75-6-176-94.ngrok-free.app/submit", {
                     method: "POST",
                     headers: {
                         "Content-Type": "application/json",
@@ -254,5 +254,45 @@
             }
         });
     </script>
+
+    <script>
+    document.getElementById("remove-email").addEventListener("click", async () => {
+        const email = document.getElementById("email").value.trim();
+
+        if (!email) {
+            alert("Please enter your email to remove your data.");
+            return;
+        }
+
+        const confirmation = confirm("Are you sure you want to remove your email and associated data?");
+        if (!confirmation) {
+            return;
+        }
+
+        try {
+            const response = await fetch("https://5b0a-75-6-176-94.ngrok-free.app/delete", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({ email: email }),
+            });
+
+            if (response.ok) {
+                const result = await response.json();
+                alert(result.message);
+                // Optionally clear the form fields
+                document.getElementById("stock-form").reset();
+            } else {
+                const error = await response.json();
+                alert(`Error: ${error.error}`);
+            }
+        } catch (err) {
+            console.error(err);
+            alert("An error occurred. Please try again.");
+        }
+    });
+    </script>
+
 </body>
 </html>
