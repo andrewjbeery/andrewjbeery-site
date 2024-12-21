@@ -234,7 +234,7 @@
             console.log('Submitted Data:', data);  // Log for debugging
 
             try {
-                const response = await fetch("https://5b0a-75-6-176-94.ngrok-free.app/submit", {
+                const response = await fetch("https://fbf3-75-6-176-94.ngrok-free.app/submit", {
                     method: "POST",
                     headers: {
                         "Content-Type": "application/json",
@@ -256,7 +256,8 @@
     </script>
 
     <script>
-    document.getElementById("remove-email").addEventListener("click", async () => {
+    document.getElementById("remove-email").addEventListener("click", async (e) => {
+        e.preventDefault();
         const email = document.getElementById("email").value.trim();
 
         if (!email) {
@@ -269,8 +270,13 @@
             return;
         }
 
+        const data = {
+                email: email,
+            };
+            console.log('Removed Data:', email);  // Log for debugging
+
         try {
-            const response = await fetch("https://5b0a-75-6-176-94.ngrok-free.app/delete", {
+            const response = await fetch("https://fbf3-75-6-176-94.ngrok-free.app/delete", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
