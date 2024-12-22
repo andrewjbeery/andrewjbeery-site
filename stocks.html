@@ -7,103 +7,6 @@
     <title>Stock Tracker | AJ Beery</title>
     <link rel="stylesheet" href="styles.css">
     <link rel="icon" href="assets/AJ.ico" type="image/x-icon">
-    <style>
-        /* Main Section */
-        p {
-            text-align: center;
-            font-size: 1.2em;
-            margin-bottom: 20px;
-        }
-
-        /* Form Styles */
-        #stock-form {
-            background-color: #fff;
-            padding: 30px;
-            border-radius: 8px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            max-width: 600px;
-            margin: 0 auto;
-        }
-
-        #remove-form {
-            background-color: #fff;
-            padding: 30px;
-            border-radius: 8px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            max-width: 600px;
-            margin: 0 auto;
-        }
-
-        .form-group {
-            margin-bottom: 15px;
-        }
-
-        label {
-            font-weight: bold;
-            color: #333;
-            display: block;
-            margin-bottom: 8px;
-        }
-
-        input[type="email"],
-        input[type="text"],
-        input[type="number"] {
-            width: 100%;
-            padding: 12px;
-            border: 1px solid #ccc;
-            border-radius: 6px;
-            font-size: 1em;
-            margin-bottom: 15px;
-            box-sizing: border-box;
-        }
-
-        input[type="email"]:focus,
-        input[type="text"]:focus,
-        input[type="number"]:focus {
-            border-color: #1e2a47;
-            outline: none;
-        }
-
-        button {
-            background-color: #1e2a47;
-            color: white;
-            border: none;
-            padding: 15px 25px;
-            font-size: 1.1em;
-            border-radius: 6px;
-            cursor: pointer;
-            transition: background-color 0.3s;
-        }
-
-        button:hover {
-            background-color: #334b6b;
-        }
-
-        #add-stock {
-            background-color: #4CAF50;
-            margin-top: 10px;
-            margin-bottom: 10px;
-        }
-
-        #add-stock:hover {
-            background-color: #45a049;
-        }
-
-        .stock-entry {
-            margin-bottom: 15px;
-            display: flex;
-            justify-content: space-between;
-        }
-
-        .stock-entry input {
-            width: 48%;
-        }
-
-        .stock-entry input:last-child {
-            margin-right: 0;
-        }
-
-    </style>
 </head>
 <body>
     <header>
@@ -126,9 +29,12 @@
             <!-- <a href="#contact" class="cta-button">Get In Touch</a> -->
         </div>
     </section>
-    <h_c>Sign Up!</h_c>
-    <br>
-    <p>Enter your email and stock holdings below to recieve a daily morning email tracking your portfolio!:</p>
+  
+    <div style= "text-align: center">
+        <br>
+        <h2>Sign Up!</h2>
+        <p>Enter your email and stock holdings below to receive a daily morning email tracking your portfolio!</p>
+    </div>
 
     <form id="stock-form">
         <div class="form-group">
@@ -146,10 +52,12 @@
         <button type="button" id="add-stock">Add Another Stock</button>
         <button type="submit">Submit</button>
     </form>
-
-    <h_c>Unsubscribe</h_c>
-    <br>
-    <p>If you no longer want to recieve emails, enter your email on file and your data will be deleted!</p>
+    <div style= "text-align: center">
+        <br>
+        <br>
+        <h2>Unsubscribe</h2>
+        <p>If you no longer want to recieve emails, enter your email on file and your data will be deleted!</p>
+    </div>
     
     <form id="remove-form">
         <div class="form-group">
@@ -159,10 +67,14 @@
         <button type="submit">Remove Email and Data</button>
     </form>
     
+    <div style= "text-align: center">
+        <br>
+        <br>
+        <h2>Coming Soon: Machine Learning Powered Predicitons!</h2>
+        <br>
+        <br>
+    </div>
 
-    <h_c>Coming Soon: Machine Learning Powered Predicitons!</h_c>
-    <br>
-    <br>
     <footer>
         <p>&copy; 2024 AJ Beery. All Rights Reserved.</p>
     </footer>
