@@ -63,11 +63,13 @@ header nav ul li a:hover {
 .hero h1 {
     font-size: 48px;
     margin-bottom: 20px;
+    color: #fff;
 }
 
 .hero p {
     font-size: 22px;
     margin-bottom: 40px;
+    color: #fff;
 }
 
 .cta-button {
